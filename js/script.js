@@ -64,16 +64,16 @@ function showPage(list, page) {
 
    for (let i = 0; i < list.length; i +=1) {
       if (i >= startIndex && i < endIndex) {
-         const student = list[i];
+         //const student = list[i];
          const studentItem = ` 
             <li class="student-item cf">
                <div class="student-details">
-                  <img class="avatar" src=${student.picture.large} alt="Profile Picture">
-                  <h3>${student.name.first} ${student.name.last}</h3>
-                  <span class="email">${student.email}</span>
+                  <img class="avatar" src=${list[i].picture.large} alt="Profile Picture">
+                  <h3>${list[i].name.first} ${list[i].name.last}</h3>
+                  <span class="email">${list[i].email}</span>
                </div>
                <div class="joined-details">
-                  <span class="date">${student.registered.date}</span>
+                  <span class="date">${list[i].registered.date}</span>
                </div>
             </li>`;
          studentList.innerHTML += studentItem;
