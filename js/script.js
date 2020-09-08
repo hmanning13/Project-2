@@ -71,7 +71,7 @@ function showPage(list, page) {
    }
 }
 
-showPage(data, 1);
+
 
 
 
@@ -112,4 +112,5 @@ function addPagination(list) {
  }
 
  // Call functions
+ showPage(data, 1);
  addPagination(data);
