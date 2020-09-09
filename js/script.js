@@ -17,10 +17,52 @@ For assistance:
 Create the `showPage` function
 This function will create and insert/append the elements needed to display a "page" of nine students
 */
+const linkList = document.querySelector(".link-list");
+const header = document.querySelector("header");
+const searchBar = header.querySelector("#search");
+const searchButton = header.querySelector("#search-button");
+const studentList = document.querySelector("ul.student-list");
 
 
 
 
+const searchBarLabel = `
+   <label for="search" class="student-search">
+      <input id="search" placeholder="Search by name...">
+      <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
+   </label>
+`;
+
+
+header.insertAdjacentHTML("beforeend", searchBarLabel);
+
+function search(searchInput, list) {
+   const filteredList = [];
+
+   for (let i = 0; i < list.length; i +=1) {
+      const student = list[i];
+      const studentName = `${student.name.first} ${student.name.last}`.toLowerCase();
+
+      if (searchInput.value.length != 0 && studentName.includes(searchInput.value.toLowerCase())) {
+         filteredList.push(student);
+      }
+   }
+
+
+
+   if (filteredList.length != 0) {
+      showPage(filteredList, 1);
+      addPagination(filteredList);
+   } else if (filteredList.length == 0 && searchInput.value.length != 0) {
+      studentList.innerHTML = `<h3>No results found</h3>`;
+      linkList.innerHTML = "";
+   } else if (filteredList.length == 0 && searchInput.value.length == 0) {
+      showPage(data, 1);
+      addPagination(data);
+   }
+
+
+}
 
 
 
@@ -89,7 +131,6 @@ function addPagination(list) {
    // create a variable to calculate the number of pages needed
    const numOfPages = Math.ceil(list.length / 9);
    // select the element with a class of `link-list` and assign it to a variable
-   const linkList = document.querySelector("ul.link-list");
    // set the innerHTML property of the variable you just created to an empty string
    linkList.innerHTML = "";
    // loop over the number of pages needed
@@ -100,7 +141,7 @@ function addPagination(list) {
       `<li>
          <button type ="button">${i}</button>
       <li>`;
-      linkList.innerHTML += button
+      linkList.insertAdjacentHTML("beforeend", button);
    }
    // give the first pagination button a class of "active"
    const firstButton = linkList.firstElementChild;
@@ -109,12 +150,14 @@ function addPagination(list) {
 
    linkList.addEventListener("click", (e) => {
       if (e.target.tagName === "BUTTON") {
-         const listOfButtons = linkList.children;
+         const listOfButtons = linkList.querySelector("li button");
          const button = e.target;
          
          for (let i = 0; i < listOfButtons.length; i += 1) {
-            const buttonElement = listOfButtons[i].querySelector("button");
-            //buttonElement.className = "";
+            if (listOfButtons[i].className === "active") {
+               listOfButtons[i].classList.remove("active")
+            }
+           
             
          }
          
@@ -127,3 +170,15 @@ function addPagination(list) {
  // Call functions
  showPage(data, 1);
  addPagination(data);
+
+
+
+
+
+searchBar.addEventListener("keyup", () => {
+   search(searchBar, data);
+});
+
+searchButton.addEventListener("click", () => {
+   search(searchBar, data);
+});
