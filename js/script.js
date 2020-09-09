@@ -90,7 +90,8 @@ function addPagination(list) {
 
 
 
-//STILL WORKING ON SEACHBAR AND EXCEEDS
+//Below is the function for the search bar
+//Returns only the students searched for and clears out the rest of the results 
 
 
  const searchBarLabel = `
@@ -131,7 +132,6 @@ function search(searchInput, list) {
 
 }
 
-////////////////////////////////////////////////////////////
 const searchBar = header.querySelector("#search");
 const searchButton = header.querySelector(".student-search button");
 
