@@ -133,7 +133,7 @@ function search(searchInput, list) {
 
 ////////////////////////////////////////////////////////////
 const searchBar = header.querySelector(".student-search button");
-const searchButton = header.querySelector("#search-button");
+const searchButton = header.querySelector(".student-search button");
 
 searchBar.addEventListener("keyup", () => {
    search(searchBar, data);
