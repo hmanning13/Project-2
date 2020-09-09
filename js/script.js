@@ -158,7 +158,6 @@ function addPagination(list) {
                listOfButtons[i].classList.remove("active")
             }
            
-            
          }
          
          button.className = "active";
@@ -167,6 +166,9 @@ function addPagination(list) {
    });
 }
 
+
+
+
  // Call functions
  showPage(data, 1);
  addPagination(data);
@@ -174,8 +176,7 @@ function addPagination(list) {
 
 
 
-
-searchBar.addEventListener("keyup", () => {
+ searchBar.addEventListener("keyup", () => {
    search(searchBar, data);
 });
 
