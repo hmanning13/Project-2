@@ -14,8 +14,6 @@ For assistance:
 
 const linkList = document.querySelector(".link-list");
 const header = document.querySelector("header");
-const searchBar = header.querySelector("#search");
-const searchButton = header.querySelector("#search-button");
 const studentList = document.querySelector("ul.student-list");
 
 
@@ -77,8 +75,8 @@ function addPagination(list) {
    linkList.addEventListener("click", (e) => {
       if (e.target.tagName === "BUTTON") {
          let first = document.querySelector(".active");
-         
-         e.target.className = "activate";     
+         first.classList.remove("active");
+         e.target.className = "active";     
          showPage(list, e.target.textContent)
       }
          
@@ -134,9 +132,10 @@ function search(searchInput, list) {
 }
 
 ////////////////////////////////////////////////////////////
+const searchBar = header.querySelector(".student-search button");
+const searchButton = header.querySelector("#search-button");
 
-
- searchBar.addEventListener("keyup", () => {
+searchBar.addEventListener("keyup", () => {
    search(searchBar, data);
 });
 
